@@ -33,9 +33,43 @@ main{
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    transform: rotateY(180deg);
+    overflow: hidden;
+    position: relative;
+    color: black;
+    
+    div{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        transform: rotateY(180deg);
+        background-color: aliceblue;
+        backface-visibility: hidden;
+    }
 
     img{
         width: 100%;
+    }
+}
+
+.mystery-card.flipped{
+    transition: transform 2s;
+    transform: rotateY(0deg);
+
+    div{
+        transform: rotateY(0deg)
+    }
+
+    img{
+        transform: rotateY(180deg)
     }
 }
 

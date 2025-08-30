@@ -3,10 +3,12 @@
 let maxNumber = 10
 let targetNumber = Math.round( Math.random() * maxNumber )
 let guessCount = 0
-let playCount = 0
+let playCount = 1
 
 let userInputElm = document.getElementById('user-input')
 let outputElm = document.getElementById('output')
+let cardNumberElm = document.getElementById('card-number')
+let mysteryCardElm = document.getElementById('mystery-card')
 
 // SECTION Game Logic Functions
 
@@ -16,12 +18,14 @@ function checkGuess(guess){
 
     if (guess == targetNumber){
         console.log(`Congratulations ${guess} was the number!`);
-        playCount++
         outputElm.innerHTML += `
         <p>Congratulations ${guess} was the number!</p> 
         <p>You managed to figure it out in only ${guessCount} guesses!</p>
         <p>You have played ${playCount} games</p>
         `
+        cardNumberElm.innerText = `${targetNumber}`
+        mysteryCardElm.classList.add('flipped')
+        playCount++
         drawReset()
 
     } else if (guess < targetNumber){
@@ -42,6 +46,8 @@ function resetGame(){
     guessCount = 0
     drawButtons()
     outputElm.innerHTML = '<p>Time to play again!</p>'
+    mysteryCardElm.classList.remove('flipped')
+    maxNumber = maxNumber * playCount
 }
 
 
