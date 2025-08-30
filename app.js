@@ -1,21 +1,27 @@
 // SECTION Global Variables
 
-let maxNumber = 100
+let maxNumber = 10
 let targetNumber = Math.round( Math.random() * maxNumber )
 let guessCount = 0
+let playCount = 0
 
 let userInputElm = document.getElementById('user-input')
+let outputElm = document.getElementById('output')
 
 // SECTION Game Logic Functions
 
 function checkGuess(guess){
-    let outputElm = document.getElementById('output')
 
     guessCount++
 
     if (guess == targetNumber){
         console.log(`Congratulations ${guess} was the number!`);
-        outputElm.innerHTML += `<p>Congratulations ${guess} was the number!</p> <p>You managed to figure it out in only ${guessCount} guesses!</p>`
+        playCount++
+        outputElm.innerHTML += `
+        <p>Congratulations ${guess} was the number!</p> 
+        <p>You managed to figure it out in only ${guessCount} guesses!</p>
+        <p>You have played ${playCount} games</p>
+        `
         drawReset()
 
     } else if (guess < targetNumber){
@@ -29,6 +35,13 @@ function checkGuess(guess){
         console.log('Input error, try again');
     }
 
+}
+
+function resetGame(){
+    targetNumber = Math.ceil(Math.random() * maxNumber)
+    guessCount = 0
+    drawButtons()
+    outputElm.innerHTML = '<p>Time to play again!</p>'
 }
 
 
@@ -46,7 +59,7 @@ function drawButtons(){
 }
 
 function drawReset(){
-    userInputElm.innerHTML = "<button>Reset Game</button>" 
+    userInputElm.innerHTML = '<button onclick="resetGame()">Reset Game</button>' 
 }
 
 drawButtons()
