@@ -6,15 +6,15 @@ function checkGuess(guess){
 
     if (guess == targetNumber){
         console.log(`Congratulations ${guess} was the number!`);
-        outputElm.innerText += `Congratulations ${guess} was the number!`
+        outputElm.innerHTML += `<p>Congratulations ${guess} was the number!</p>`
 
     } else if (guess < targetNumber){
         console.log(`${guess} is too small, try again`);
-        outputElm.innerText += `${guess} is too small, try again`
+        outputElm.innerHTML += `<p>${guess} is too small, try again</p>`
         
     } else if (guess > targetNumber) {
         console.log(`${guess} is too big, think smaller!`);
-        outputElm.innerText += `${guess} is too big, think smaller!`
+        outputElm.innerHTML += `<p>${guess} is too big, think smaller!</p>`
     } else {
         console.log('Input error, try again');
     }
